@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
-  type Employees {
+  type Employee {
     _id: ID
     fbID: ID
     token: String
@@ -23,22 +23,24 @@ const typeDefs = gql`
   }
   type Order {
     _id: ID
-    Employees: Employees
-    Dish: Dish
+    employeeID: String
+    dishID: String
     date: String
     count: Int
     node: String
     isComplete: Boolean
+    employees: [Employee]
+    dish: Dish
   }
   type Query {
-    Employees(_id: ID!): Employees
-    getEmployees: [Employees]
+    Employee(_id: ID!): Employee
+    Employees: [Employee]
     Admin(_id: ID!): Admin
-    getAdmin: [Admin]
+    Admins: [Admin]
     Dish(_id: ID!): Dish
-    getDish: [Dish]
+    Dishes: [Dish]
     Order(_id: ID!): Order
-    getOrder: [Order]
+    Orders: [Order]
 
     signIn(username: String!, password: String!): Admin
   }
@@ -46,21 +48,21 @@ const typeDefs = gql`
     resetAll(confirm: String!): Boolean
     changePassword(_id: ID!, password: String!): Admin
 
-    addEmployees(fbID: ID!, token: String!, email: String!, name: String!): Employees
-    updateEmployees(_id: ID!, fbID: String, token: String!, email: String, name: String): Employees
-    removeEmployees(_id: ID!): Boolean
+    createEmployees(fbID: ID!, token: String!, email: String!, name: String!): Employee
+    updateEmployees(_id: ID!, fbID: String, token: String!, email: String, name: String): Employee
+    deleteEmployees(_id: ID!): Boolean
 
-    addAdmin(username: String!, password: String!): Admin
+    createAdmin(username: String!, password: String!): Admin
     updateAdmin(_id: ID!, isPublic: Boolean, isLock: Boolean): Admin
-    removeAdmin(_id: ID!): Boolean
+    deleteAdmin(_id: ID!): Boolean
 
-    addDish(name: String!, count: String!): Dish
+    createDish(name: String!, count: String!): Dish
     updateDish(_id: ID!, name: String, count: String): Dish
-    removeDish(_id: ID!): Boolean
+    deleteDish(_id: ID!): Boolean
 
-    addOrder(idEmployees: String!, idDish: String!, count: Int!, node: String!): Order
+    createOrder(idEmployees: String!, idDish: String!, count: Int!, node: String!): Order
     updateOrder(_id: ID!, idDish: String, count: Int, node: String): Order
-    removeOrder(_id: ID!): Boolean
+    deleteOrder(_id: ID!): Boolean
   }
 `
 
