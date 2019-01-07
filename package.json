@@ -1,0 +1,15 @@
+{
+  "name": "server-lunch-innos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.3.1",
+    "graphql": "^14.0.2",
+    "jsonwebtoken": "^8.4.0",
+    "nodemon": "^1.18.9"
+  },
+  "scripts": {
+    "start": "nodemon ./index.js"
+  }
+}
