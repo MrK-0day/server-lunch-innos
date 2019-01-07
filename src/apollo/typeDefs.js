@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server')
+const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
   type Employees {
@@ -64,41 +64,4 @@ const typeDefs = gql`
   }
 `
 
-const resolvers = {
-  Query: {
-    Employees: (root, args, { token }) => {},
-    getEmployees: (root, args, { token }) => {},
-    Admin: (root, args, { token }) => {},
-    getAdmin: (root, args, { token }) => {},
-    Dish: (root, args, { token }) => {},
-    getDish: (root, args, { token }) => {},
-    Order: (root, args, { token }) => {},
-    getOrder: (root, args, { token }) => {}
-  },
-  Order: {
-    Employees: (root, args, { token }) => {
-      return {}
-    },
-    Dish: (root, args, { token }) => {
-      return {}
-    }
-  },
-  Mutation: {
-    resetAll: (root, args, { token }) => {},
-    changePassword: (root, args, { token }) => {},
-    addEmployees: (root, args, { token }) => {},
-    updateEmployees: (root, args, { token }) => {},
-    removeEmployees: (root, args, { token }) => {},
-    addAdmin: (root, args, { token }) => {},
-    updateAdmin: (root, args, { token }) => {},
-    removeAdmin: (root, args, { token }) => {},
-    addDish: (root, args, { token }) => {},
-    updateDish: (root, args, { token }) => {},
-    removeDish: (root, args, { token }) => {},
-    addOrder: (root, args, { token }) => {},
-    updateOrder: (root, args, { token }) => {},
-    removeOrder: (root, args, { token }) => {}
-  }
-}
-
-module.exports = { typeDefs, resolvers }
+export default typeDefs
